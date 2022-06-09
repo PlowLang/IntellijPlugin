@@ -1,0 +1,21 @@
+{
+  parserClass="com.github.dragonhatcher.language.parser.PlowParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Plow"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.github.dragonhatcher.language.psi"
+  psiImplPackage="com.github.dragonhatcher.language.psi.impl"
+
+  elementTypeHolderClass="com.github.dragonhatcher.language.psi.PlowTypes"
+  elementTypeClass="com.github.dragonhatcher.language.psi.PlowElementType"
+  tokenTypeClass="com.github.dragonhatcher.language.psi.PlowTokenType"
+}
+
+plowFile ::= item_*
+
+private item_ ::= (extra|KEYWORD|PUNCUATION|IDENTIFIER|literal)
+
+extra ::= (COMMENT|WHITE_SPACE)
+literal ::= (NUMBER|STRING)

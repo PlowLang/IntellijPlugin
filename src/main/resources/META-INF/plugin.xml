@@ -1,18 +1,27 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.dragonhatcher.intellijplugin</id>
+    <id>com.github.dragonhatcher</id>
     <name>IntellijPlugin</name>
     <vendor>dragon-hatcher</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.dragonhatcher.intellijplugin.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.dragonhatcher.intellijplugin.services.MyProjectService"/>
+        <fileType
+                name="Plow File"
+                implementationClass="com.github.dragonhatcher.language.PlowFileType"
+                fieldName="INSTANCE"
+                language="Plow"
+                extensions="plow"/>
+
+        <lang.parserDefinition
+                language="Plow"
+                implementationClass="com.github.dragonhatcher.language.PlowParserDefinition"/>
+
+        <lang.syntaxHighlighterFactory
+                language="Plow"
+                implementationClass="com.github.dragonhatcher.language.PlowSyntaxHighlighterFactory"/>
+
     </extensions>
 
-    <applicationListeners>
-        <listener class="com.github.dragonhatcher.intellijplugin.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
 </idea-plugin>
